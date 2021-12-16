@@ -1,0 +1,9 @@
+.idea
+.settings
+.vscode
+target/
+.classpath
+.project
+*.iml
+mybatis-code-generator/gencode
+apidoc/
