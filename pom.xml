@@ -20,6 +20,7 @@
         <module>mybatisplustest</module>
         <module>aop-log</module>
         <module>data-desensitization</module>
+        <module>mybatisplus-sqlserver</module>
     </modules>
 
     <properties>
@@ -130,6 +131,13 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.22</version>
+            </dependency>
+            <!--        sqlserver-->
+            <dependency>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>sqljdbc4</artifactId>
+                <version>4.0</version>
+                <scope>runtime</scope>
             </dependency>
 <!--            读写分离-->
             <dependency>
