@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: server-side
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.10.83:8848
+server:
+  port: 6004

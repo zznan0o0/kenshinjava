@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kenshin.mybatisplussqlserver.mapper.EmployeeInfoMapper">
+
+    <resultMap id="BaseResultMap" type="org.kenshin.mybatisplussqlserver.domain.EmployeeInfo">
+            <id property="id" column="Id" jdbcType="BIGINT"/>
+            <result property="tenantid" column="TenantId" jdbcType="BIGINT"/>
+            <result property="createtime" column="CreateTime" jdbcType="TIMESTAMP"/>
+            <result property="loginname" column="LoginName" jdbcType="VARCHAR"/>
+            <result property="userpassword" column="UserPassword" jdbcType="VARCHAR"/>
+            <result property="username" column="UserName" jdbcType="VARCHAR"/>
+            <result property="sex" column="Sex" jdbcType="SMALLINT"/>
+            <result property="departmentid" column="DepartmentId" jdbcType="BIGINT"/>
+            <result property="phone" column="Phone" jdbcType="VARCHAR"/>
+            <result property="email" column="Email" jdbcType="VARCHAR"/>
+            <result property="address" column="Address" jdbcType="VARCHAR"/>
+            <result property="postionid" column="PostionId" jdbcType="BIGINT"/>
+            <result property="datastate" column="DataState" jdbcType="SMALLINT"/>
+            <result property="roleid" column="RoleId" jdbcType="BIGINT"/>
+            <result property="ip" column="IP" jdbcType="VARCHAR"/>
+            <result property="lasttime" column="LastTime" jdbcType="TIMESTAMP"/>
+            <result property="employeetype" column="EmployeeType" jdbcType="SMALLINT"/>
+            <result property="coefficient" column="Coefficient" jdbcType="DECIMAL"/>
+            <result property="wechatopenid" column="WechatOpenId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        Id,TenantId,CreateTime,
+        LoginName,UserPassword,UserName,
+        Sex,DepartmentId,Phone,
+        Email,Address,PostionId,
+        DataState,RoleId,IP,
+        LastTime,EmployeeType,Coefficient,
+        WechatOpenId
+    </sql>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kenshin.mybatisplussqlserver.mapper.ArrearsInfoMapper">
+
+    <resultMap id="BaseResultMap" type="org.kenshin.mybatisplussqlserver.domain.ArrearsInfo">
+            <id property="id" column="Id" jdbcType="BIGINT"/>
+            <result property="arrearsno" column="ArrearsNo" jdbcType="VARCHAR"/>
+            <result property="creatorname" column="CreatorName" jdbcType="VARCHAR"/>
+            <result property="createtime" column="CreateTime" jdbcType="TIMESTAMP"/>
+            <result property="modifiername" column="ModifierName" jdbcType="VARCHAR"/>
+            <result property="modifytime" column="ModifyTime" jdbcType="TIMESTAMP"/>
+            <result property="tenantid" column="TenantId" jdbcType="BIGINT"/>
+            <result property="customerid" column="CustomerId" jdbcType="BIGINT"/>
+            <result property="remark" column="Remark" jdbcType="VARCHAR"/>
+            <result property="money" column="Money" jdbcType="DECIMAL"/>
+            <result property="arrearstime" column="ArrearsTime" jdbcType="TIMESTAMP"/>
+            <result property="datastate" column="DataState" jdbcType="SMALLINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        Id,ArrearsNo,CreatorName,
+        CreateTime,ModifierName,ModifyTime,
+        TenantId,CustomerId,Remark,
+        Money,ArrearsTime,DataState
+    </sql>
+</mapper>

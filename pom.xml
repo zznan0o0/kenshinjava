@@ -21,6 +21,10 @@
         <module>aop-log</module>
         <module>data-desensitization</module>
         <module>mybatisplus-sqlserver</module>
+        <module>for-alibaba-server-side</module>
+        <module>shop-product</module>
+        <module>shop-order</module>
+        <module>shop-product2</module>
     </modules>
 
     <properties>
@@ -218,6 +222,13 @@
                 <groupId>javax.xml.bind</groupId>
                 <artifactId>jaxb-api</artifactId>
                 <version>2.3.0</version>
+            </dependency>
+
+<!--            注册中心客户端-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>2.2.7.RELEASE</version>
             </dependency>
 
         </dependencies>
