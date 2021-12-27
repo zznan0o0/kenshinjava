@@ -25,6 +25,26 @@ spring:
           username: sa
           password: ATjubo123456
           driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      #dynamic - 公共配置
+      druid:
+        initialSize: 5
+        minIdle: 5
+        maxActive: 30
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,slf4j,config
+        useGlobalDataSourceStat: true
+        stat:
+          log-slow-sql: true
+          merge-sql: true
+          slow-sql-millis: 10000
 
 
 
