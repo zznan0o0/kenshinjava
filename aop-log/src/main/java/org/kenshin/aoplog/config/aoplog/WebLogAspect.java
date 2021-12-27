@@ -8,7 +8,6 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 
 @Aspect
 @Component
@@ -25,8 +24,9 @@ public class WebLogAspect {
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         startTime.set(System.currentTimeMillis());
         logger.info(joinPoint.getKind());
-        logger.info(joinPoint.getArgs().toString());
-        for (joinPoint.getArgs())
+        for (Object obj : joinPoint.getArgs()){
+            logger.info("Arg: " + obj.toString());
+        }
         // 省略日志记录内容
     }
 

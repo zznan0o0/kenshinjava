@@ -1,5 +1,6 @@
 package org.kenshin.aoplog.controller;
 
+import org.kenshin.aoplog.utils.NameUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping(value = "/getName")
     public String getName(String name){
-        return  name + "12123123";
+        name = NameUtil.sp(name);
+        NameUtil nameUtil = new NameUtil();
+        name = nameUtil.sp2(name);
+        return name;
     }
 }
