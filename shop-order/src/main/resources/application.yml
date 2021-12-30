@@ -2,8 +2,28 @@ spring:
   application:
     name: shop-order
   cloud:
+    inetutils:
+      preferred-networks: 192.168.10 #优先选择ip前缀解决多网卡问题
     nacos:
       discovery:
         server-addr: 192.168.10.83:8848
+    sentinel:
+
+      transport:
+#        port: 7771 #应用与控制台交流端口自己选一个没占用的
+        dashboard: 192.168.10.83:8849 #控制台地址
+        clientIp: 192.168.10.206 # 多ip问题只能指定ip
+
+#      eager: true
+
 server:
   port: 7002
+  tomcat:
+    threads:
+      max: 10 # 最大线程数10
+
+
+# 开启feign对sentinel的支持
+feign:
+  sentinel:
+    enabled: true
