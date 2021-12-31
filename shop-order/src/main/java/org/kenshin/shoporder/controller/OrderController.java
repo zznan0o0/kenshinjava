@@ -6,12 +6,14 @@ import org.kenshin.shoporder.entity.Product;
 import org.kenshin.shoporder.service.ProductService;
 import org.kenshin.shoporder.utils.SentinelExceptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +27,13 @@ public class OrderController {
     @Autowired
     private ProductService productService;
 
+
+    @GetMapping("/getBaidu")
+    public String getBaidu(){
+        RestTemplate restTemplate = new RestTemplate();
+        String str = restTemplate.getForObject("https://www.baidu.com/", String.class);
+        return str;
+    }
 
     @GetMapping(value = "/getOrder")
     public Order getOrder(){
