@@ -70,7 +70,7 @@ public class OrderController {
     @GetMapping(value = "/getOrderRibbon")
     public Order getOrderRibbon(){
         String url = "shop-product";
-        Product product = restTemplate.getForObject(
+        Product product = this.restTemplate.getForObject(
                 "http://" + url + "/getProduct/3", Product.class);
 
         Order order = new Order();

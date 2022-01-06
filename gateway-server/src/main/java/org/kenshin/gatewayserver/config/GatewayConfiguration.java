@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.BlockRequestHandler;
+import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.GatewayCallbackManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -44,7 +45,7 @@ public class GatewayConfiguration {
     @PostConstruct
     public void initGatewayRules() {
         Set<GatewayFlowRule> rules = new HashSet<>();
-        rules.add(new GatewayFlowRule("product_route").setCount(1).setIntervalSec(1));
+        rules.add(new GatewayFlowRule("shop-product").setCount(1).setIntervalSec(1));
         GatewayRuleManager.loadRules(rules);
     }
 
@@ -72,6 +73,8 @@ public class GatewayConfiguration {
 //                return null;
             }
         };
+
+        GatewayCallbackManager.setBlockHandler(blockRequestHandler);
     }
 
 
