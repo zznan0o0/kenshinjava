@@ -26,7 +26,7 @@
         <module>shop-order</module>
         <module>shop-product2</module>
         <module>gateway-server</module>
-<!--        <module>annotation-getter</module>-->
+        <module>annotation-getter</module>
         <module>annotation-test</module>
         <module>springboot-minio</module>
     </modules>

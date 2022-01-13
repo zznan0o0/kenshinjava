@@ -27,7 +27,7 @@ public class GetterProcessor extends AbstractProcessor {
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
-        System.out.println("Enter method init");
+        System.out.println("Enter method init------------------------------sdfsdkjhnfkjdshnfkdsknfkjdsnf");
         super.init(processingEnv);
         this.messager = processingEnv.getMessager();
         this.trees = JavacTrees.instance(processingEnv);

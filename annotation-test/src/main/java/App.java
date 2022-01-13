@@ -10,7 +10,7 @@ public class App {
 
     public static void main(String[] args){
         App app = new App("Getter annotation success");
-        //没成功不知道为啥
+        //测的时候再打开idea报错烦-_-|||,用package，然后运行jar包测，debug不行不知道为啥，不过总算成功了
 //        System.out.println(app.getValue());
 
     }
