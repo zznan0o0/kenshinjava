@@ -10,14 +10,20 @@ spring:
     sentinel:
 
       transport:
-#        port: 7771 #应用与控制台交流端口自己选一个没占用的
+        #        port: 7771 #应用与控制台交流端口自己选一个没占用的
         dashboard: 192.168.10.83:8849 #控制台地址
         clientIp: 192.168.10.206 # 多ip问题只能指定ip
+      datasource:
+        ds:
+          nacos:
+            server-addr: 192.168.10.83:8848
+            dataId: sentinel
+            rule-type: flow
 
-#      eager: true
+  #      eager: true
 
   zipkin:
-    base-url: http://192.168.10.83:9411/ #zipkin server的请求地址
+    base-url: http://192.168.10.83:9411 #zipkin server的请求地址
     discoveryClientEnabled: false #让nacos把它当成一个URL，而不要当做服务名
   sleuth:
     sampler:
@@ -35,3 +41,15 @@ server:
 feign:
   sentinel:
     enabled: true
+
+#rocketmq
+rocketmq:
+  name-server: 192.168.10.83:9876 #rocketMQ服务的地址
+  producer:
+    group: shop-order # 生产者组必须指定group
+    send-message-timeout: 3000 # 消息发送超时时长，默认3s
+    retry-times-when-send-failed: 3 # 同步发送消息失败重试次数，默认2
+    retry-times-when-send-async-failed: 3 # 异步发送消息失败重试次数，默认2
+
+
+configTest: 1

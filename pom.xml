@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-<!--    父类jar库包含spring很多的预设库-->
+    <!--    父类jar库包含spring很多的预设库-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -58,26 +58,26 @@
         <apollo-client.version>1.7.0</apollo-client.version>
     </properties>
     <!--        阿里源-->
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>aliyun</id>-->
-<!--            <url>http://maven.aliyun.com/nexus/content/groups/public</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>oss-public</id>-->
-<!--            <url>https://oss.sonatype.org/content/repositories/public</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>snapshot</id>-->
-<!--            <name>mp-snapshot</name>-->
-<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
-<!--    </repositories>-->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>oss-public</id>
+            <url>https://oss.sonatype.org/content/repositories/public</url>
+        </repository>
+        <repository>
+            <id>snapshot</id>
+            <name>mp-snapshot</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-<!--插件阿里源-->
+    <!--插件阿里源-->
     <pluginRepositories>
         <pluginRepository>
             <id>public</id>
@@ -92,7 +92,7 @@
         </pluginRepository>
     </pluginRepositories>
 
-<!--    包版本管理-->
+    <!--    包版本管理-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -147,13 +147,13 @@
                 <version>4.0</version>
                 <scope>runtime</scope>
             </dependency>
-<!--            读写分离-->
+            <!--            读写分离-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>3.4.1</version>
             </dependency>
-<!--            连接池-->
+            <!--            连接池-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
@@ -168,11 +168,11 @@
             </dependency>
 
             <!--    jedis注入     -->
-<!--            <dependency>-->
-<!--                <groupId>redis.clients</groupId>-->
-<!--                <artifactId>jedis</artifactId>-->
-<!--                <version>3.6.3</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>redis.clients</groupId>-->
+            <!--                <artifactId>jedis</artifactId>-->
+            <!--                <version>3.6.3</version>-->
+            <!--            </dependency>-->
 
             <!--    redis注入  注意是有data 的-->
             <dependency>
@@ -229,7 +229,7 @@
                 <version>2.3.0</version>
             </dependency>
 
-<!--            注册中心客户端-->
+            <!--            注册中心客户端-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -241,23 +241,29 @@
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
                 <version>2.2.9.RELEASE</version>
             </dependency>
-<!--容错-->
+            <!--容错-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
                 <version>2.2.7.RELEASE</version>
             </dependency>
-<!--网关-->
+            <!--网关-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-gateway</artifactId>
                 <version>2.2.10.RELEASE</version>
             </dependency>
-<!--            网关限流-->
+            <!--            网关限流-->
             <dependency>
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
                 <version>1.8.2</version>
+            </dependency>
+<!--            限流规则持久化-->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-datasource-nacos</artifactId>
+                <version>1.8.3</version>
             </dependency>
 
             <!--            aop-->
@@ -266,19 +272,19 @@
                 <artifactId>spring-boot-starter-aop</artifactId>
                 <version>2.3.12.RELEASE</version>
             </dependency>
-<!--            链路跟踪-->
+            <!--            链路跟踪-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-sleuth</artifactId>
                 <version>2.2.8.RELEASE</version>
             </dependency>
-<!--            zipkin-->
+            <!--            zipkin-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-zipkin</artifactId>
                 <version>2.2.8.RELEASE</version>
             </dependency>
-<!--            rocketmq-->
+            <!--            rocketmq-->
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
@@ -289,6 +295,12 @@
                 <artifactId>rocketmq-client</artifactId>
                 <version>4.9.2</version>
             </dependency>
+<!--            nacos配置中心-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>2.2.6.RELEASE</version>
+            </dependency>
 
             <!--            测试-->
             <dependency>
@@ -297,28 +309,26 @@
                 <version>4.13.1</version>
                 <scope>test</scope>
             </dependency>
-<!--            minio-->
+            <!--            minio-->
             <dependency>
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>8.3.4</version>
             </dependency>
 
-<!--minio依赖-->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.9.3</version>
-        </dependency>
-<!--        暂时安全的日志版本-->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.17.1</version>
-        </dependency>
+            <!--minio依赖-->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.9.3</version>
+            </dependency>
+            <!--        暂时安全的日志版本 下不下来-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.logging.log4j</groupId>-->
+<!--                <artifactId>log4j-core</artifactId>-->
+<!--                <version>2.17.1</version>-->
+<!--            </dependency>-->
         </dependencies>
-
-
 
 
     </dependencyManagement>
@@ -335,12 +345,12 @@
             </plugin>
         </plugins>
         <resources>
-<!--            <resource>-->
-<!--                <directory>src/main/java</directory>-->
-<!--                <includes>-->
-<!--                    <include>**/*.xml</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
+            <!--            <resource>-->
+            <!--                <directory>src/main/java</directory>-->
+            <!--                <includes>-->
+            <!--                    <include>**/*.xml</include>-->
+            <!--                </includes>-->
+            <!--            </resource>-->
             <!--            <resource>-->
             <!--                <directory>src/main/resources</directory>-->
             <!--            </resource>-->

@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev # 环境
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.10.83:8848
+        file-extension: yaml #文件后缀
+        shared-configs[0]: #多配置结合
+          dataId: all-service.yaml
+          refresh: true
+#        shared-configs: all-service.yaml 旧版的，不过不要刷新和只有单个的话用这个也行
