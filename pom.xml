@@ -29,6 +29,9 @@
         <module>annotation-getter</module>
         <module>annotation-test</module>
         <module>springboot-minio</module>
+        <module>seata-mybatisplus-user</module>
+        <module>seata-mybatisplus-order</module>
+
     </modules>
 
     <properties>
@@ -301,7 +304,32 @@
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 <version>2.2.6.RELEASE</version>
             </dependency>
+<!--            分布式事务seate-->
 
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+                <version>2.2.7.RELEASE</version>
+<!--            用最新版本的-->
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.seata</groupId>
+                        <artifactId>seata-spring-boot-starter</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>1.4.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-all</artifactId>
+                <version>1.4.2</version>
+            </dependency>
             <!--            测试-->
             <dependency>
                 <groupId>junit</groupId>

@@ -1,0 +1,39 @@
+seata:
+  tx-service-group: my_test_tx_group
+  application-id: ${spring.application.name}
+
+  config:
+    type: nacos
+    nacos:
+#    namespace: fb31c4c2-29ac-456c-b9d6-36301baceae4
+      server-addr: 192.168.10.83:8848
+      group: SEATA_GROUP
+  #seata.config.nacos.username=
+  #seata.config.nacos.password=
+
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 192.168.10.83:8848
+      group: SEATA_GROUP
+#      namespace: fb31c4c2-29ac-456c-b9d6-36301baceae4
+
+spring:
+  application:
+    name: seata-mybatisplus-order
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.10.83:3306/db_test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: root
+server:
+  port: 7004
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #    map-underscore-to-cmel-case: false
+    mapUnderscoreToCamelCase: true # 下划线转驼峰
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

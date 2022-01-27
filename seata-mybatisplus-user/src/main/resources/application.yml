@@ -1,0 +1,35 @@
+seata:
+#  SEATA_GROUP: seata-server
+  tx-service-group: my_test_tx_group
+
+
+spring:
+  cloud:
+    alibaba:
+      seata:
+        SEATA_GROUP: seata-server # 定义事务组的名称
+    nacos:
+      discovery:
+        server-addr: 192.168.10.83:8848
+  application:
+    name: seata-mybatisplus-user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.10.83:3306/db_test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: root
+#    db_test:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://192.168.10.89:3306/db_test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+#      username: root
+#      password: root
+server:
+  port: 7005
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #    map-underscore-to-camel-case: false
+    mapUnderscoreToCamelCase: true # 下划线转驼峰
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
