@@ -5,6 +5,7 @@ import org.kenshin.shoporder.entity.Order;
 import org.kenshin.shoporder.entity.Product;
 import org.kenshin.shoporder.service.ProductService;
 import org.kenshin.shoporder.utils.SentinelExceptionUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
