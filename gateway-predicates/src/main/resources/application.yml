@@ -1,0 +1,29 @@
+server:
+  port: 7101
+spring:
+  application:
+    name: gateway-predicates
+  cloud:
+    gateway:
+
+      routes:
+        - id: tenants1 # 当前路由的标识, 要求唯一
+          uri: http://192.168.2.55:80
+          order: 1 # 路由的优先级,数字越小级别越高
+          predicates: # 断言(就是路由转发要满足的条件)
+            - Path=/
+            - TenantCode=6666,1011
+        - id: tenants2
+          uri: https://www.baidu.com
+          order: 1
+          predicates:
+            - Path=/
+            - TenantCode=1012
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: saas-admin-secret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24*7)
+  redisExpiration: 14400
+  redisRenewal: 2400
+  tokenHead: 'Bearer '  #JWT负载中拿到开头
