@@ -26,4 +26,14 @@ public class GatewayPredicatesApplication {
             }
         };
     }
+
+    @Bean
+    public Predicate bodyFalsePredicate(){
+        return new Predicate() {
+            @Override
+            public boolean test(Object o) {
+                return false;
+            }
+        };
+    }
 }
