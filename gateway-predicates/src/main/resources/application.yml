@@ -7,40 +7,45 @@ spring:
     gateway:
 
       routes:
-        - id: tenants0
-          uri: http://192.168.2.55:8080
-          order: 1
-          predicates:
-            - name: ReadBody #使用ReadBodyPredicateFactory断言，将body读入缓存
-              args:
-                inClass: '#{T(String)}'
-                predicate: '#{@bodyFalsePredicate}' #注入实现predicate接口类
-
         - id: tenants1 # 当前路由的标识, 要求唯一
-          uri: http://192.168.2.55:8080
-          order: 2 # 路由的优先级,数字越小级别越高
+          uri: &uri1 http://192.168.2.55:8080
+          order: 3 # 路由的优先级,数字越小级别越高
           predicates: # 断言(就是路由转发要满足的条件)
-#            - Path=/**
-#            - name: MyReadBody #使用ReadBodyPredicateFactory断言，将body读入缓存
-#              args:
-#                inClass: '#{T(String)}'
-#                predicate: '#{@bodyPredicate}' #注入实现predicate接口类
             - TenantCode=6666,1011
 
 
         - id: tenants2
-          uri: http://192.168.2.55:8083
-          order: 2
+          uri: &uri2 http://192.168.2.55:8083
+          order: 3
           predicates:
-#            - Path=/**
-#            - name: MyReadBody #使用ReadBodyPredicateFactory断言，将body读入缓存
-#              args:
-#                inClass: '#{T(String)}'
-#                predicate: '#{@bodyPredicate}' #注入实现predicate接口类
             - TenantCode=8054
 
+        - id: tenantsBody1
+          uri: *uri1
+          order: 2
+          predicates:
+            - Path=/employee/login
+            - name: MyReadBody #使用ReadBodyPredicateFactory断言，将body读入缓存
+              args:
+                inClass: '#{T(String)}'
+                predicate: '#{@bodyPredicate}' #注入实现predicate接口类
+            - TenantCode=6666,1011
+
+        - id: tenantsBody2
+          uri: *uri2
+          order: 2
+          predicates:
+            - Path=/employee/login
+            - name: MyReadBody
+              args:
+                inClass: '#{T(String)}'
+                predicate: '#{@bodyPredicate}'
+            - TenantCode=8054
+
+
         - id: tenants0000 #未命中默认转这
-          uri: http://192.168.2.55:8080
+          uri: *uri1
+#          uri: http://192.168.2.55:8080
           order: 10
           predicates:
             - Path=/**
