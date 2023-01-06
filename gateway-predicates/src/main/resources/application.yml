@@ -45,12 +45,18 @@ spring:
 
         - id: tenants0000 #未命中默认转这
           uri: *uri1
-#          uri: http://192.168.2.55:8080
+          #          uri: http://192.168.2.55:8080
           order: 10
           predicates:
             - Path=/**
 
 
+logging:
+  file:
+    path: /var/logs/gateway
+  level:
+    root: info
+    org.kenshin.gatewaypredicates: debug
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
