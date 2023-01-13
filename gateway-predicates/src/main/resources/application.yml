@@ -1,3 +1,6 @@
+globalConfig:
+  tenants1: &tenants1 TenantCode=6666,1011,1012,1013
+  tenants2: &tenants2 TenantCode=8054,2156,7116,1028,7857,3979,8211,5670,5695,7832,4212,5359,1026,0961,3725,3252,7012,3658,3125,9635,2589,7526,4562,1019,8526
 server:
   port: 7101
 spring:
@@ -5,20 +8,24 @@ spring:
     name: gateway-predicates
   cloud:
     gateway:
+      httpserver:
+        wiretap: true
+      httpclient:
+        wiretap: true
 
       routes:
         - id: tenants1 # 当前路由的标识, 要求唯一
           uri: &uri1 http://192.168.2.55:8080
           order: 3 # 路由的优先级,数字越小级别越高
           predicates: # 断言(就是路由转发要满足的条件)
-            - TenantCode=6666,1011
+            - *tenants1
 
 
         - id: tenants2
           uri: &uri2 http://192.168.2.55:8083
           order: 3
           predicates:
-            - TenantCode=8054
+            - *tenants2
 
         - id: tenantsBody1
           uri: *uri1
@@ -29,7 +36,7 @@ spring:
               args:
                 inClass: '#{T(String)}'
                 predicate: '#{@bodyPredicate}' #注入实现predicate接口类
-            - TenantCode=6666,1011
+            - *tenants1
 
         - id: tenantsBody2
           uri: *uri2
@@ -40,7 +47,7 @@ spring:
               args:
                 inClass: '#{T(String)}'
                 predicate: '#{@bodyPredicate}'
-            - TenantCode=8054
+            - *tenants2
 
 
         - id: tenants0000 #未命中默认转这
@@ -57,6 +64,9 @@ logging:
   level:
     root: info
     org.kenshin.gatewaypredicates: debug
+    org.springframework.cloud.gateway: trace
+    org.springframework.cloud.loadbalancer: trace
+    org.springframework.web.reactive: trace
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头

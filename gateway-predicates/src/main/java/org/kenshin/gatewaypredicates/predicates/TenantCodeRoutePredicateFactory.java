@@ -2,7 +2,9 @@ package org.kenshin.gatewaypredicates.predicates;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
+import lombok.extern.java.Log;
 import org.kenshin.gatewaypredicates.utils.JwtTokenUtil;
+import org.kenshin.gatewaypredicates.utils.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
 import org.springframework.cloud.gateway.handler.predicate.BetweenRoutePredicateFactory;
@@ -92,20 +94,20 @@ public class TenantCodeRoutePredicateFactory extends AbstractRoutePredicateFacto
                     e.printStackTrace();
                 }
             }
-
-            if(exchange.getRequest().getHeaders().get("Authorization") != null){
+            else if(exchange.getRequest().getHeaders().get("Authorization") != null){
                 try{
                     String auth = Objects.requireNonNull(exchange.getRequest().getHeaders().get("Authorization")).get(0);
-                    String token = auth.substring(7);
-                    Claims claims = jwtTokenUtil.getClaimsFromTokenRegardlessDate(token);
-                    String sub = (String) claims.get("sub");
-                    tenantCode = sub.split(":")[0];
-                    this.setCacheTenantCode(exchange, tenantCode);
-                    return config.getTenantCodes().contains(tenantCode);
-
+                    if(!auth.equals("undefined") && !auth.equals("null")){
+                        String token = auth.substring(7);
+                        Claims claims = jwtTokenUtil.getClaimsFromTokenRegardlessDate(token);
+                        String sub = (String) claims.get("sub");
+                        tenantCode = sub.split(":")[0];
+                        this.setCacheTenantCode(exchange, tenantCode);
+                        return config.getTenantCodes().contains(tenantCode);
+                    }
                 }
                 catch (Throwable e){
-                    e.printStackTrace();
+                    LogUtil.error(e);
                 }
             }
 //            this.setCacheTenantCode(exchange, tenantCode);
