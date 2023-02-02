@@ -1,6 +1,9 @@
 globalConfig:
   tenants1: &tenants1 TenantCode=6666,1011,1012,1013
   tenants2: &tenants2 TenantCode=8054,2156,7116,1028,7857,3979,8211,5670,5695,7832,4212,5359,1026,0961,3725,3252,7012,3658,3125,9635,2589,7526,4562,1019,8526
+  myReadBodyArgs: &myReadBodyArgs
+      inClass: '#{T(String)}'
+      predicate: '#{@bodyPredicate}'
 server:
   port: 7101
 spring:
@@ -33,9 +36,7 @@ spring:
           predicates:
             - Path=/employee/login
             - name: MyReadBody #使用ReadBodyPredicateFactory断言，将body读入缓存
-              args:
-                inClass: '#{T(String)}'
-                predicate: '#{@bodyPredicate}' #注入实现predicate接口类
+              args: *myReadBodyArgs
             - *tenants1
 
         - id: tenantsBody2
@@ -44,9 +45,7 @@ spring:
           predicates:
             - Path=/employee/login
             - name: MyReadBody
-              args:
-                inClass: '#{T(String)}'
-                predicate: '#{@bodyPredicate}'
+              args: *myReadBodyArgs
             - *tenants2
 
 

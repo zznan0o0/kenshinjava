@@ -99,22 +99,43 @@ public class TenantCodeRoutePredicateFactory extends AbstractRoutePredicateFacto
                     String auth = Objects.requireNonNull(exchange.getRequest().getHeaders().get("Authorization")).get(0);
                     if(!auth.equals("undefined") && !auth.equals("null")){
                         String token = auth.substring(7);
-                        Claims claims = jwtTokenUtil.getClaimsFromTokenRegardlessDate(token);
-                        String sub = (String) claims.get("sub");
-                        tenantCode = sub.split(":")[0];
-                        this.setCacheTenantCode(exchange, tenantCode);
-                        return config.getTenantCodes().contains(tenantCode);
+                        return this.containTokenTenantCode(config, exchange, token);
                     }
                 }
                 catch (Throwable e){
                     LogUtil.error(e);
                 }
             }
-//            this.setCacheTenantCode(exchange, tenantCode);
+            else if(exchange.getRequest().getQueryParams().containsKey("token")){
+                try{
+                    String token = exchange.getRequest().getQueryParams().get("token").get(0);
+                    if(!token.equals("undefined") && !token.equals("null")){
+                        return this.containTokenTenantCode(config, exchange, token);
+                    }
+                }
+                catch (Throwable e){
+                    LogUtil.error(e);
+                }
+            }
             return false;
         };
     }
     //获取缓存租户code
+
+    /**
+     * 检查token是否包含在当前tenantCodes中
+     * @param config
+     * @param exchange
+     * @param token
+     * @return
+     */
+    private boolean containTokenTenantCode(TenantCodeRoutePredicateFactory.Config config, ServerWebExchange exchange, String token){
+        Claims claims = jwtTokenUtil.getClaimsFromTokenRegardlessDate(token);
+        String sub = (String) claims.get("sub");
+        String tenantCode = sub.split(":")[0];
+        this.setCacheTenantCode(exchange, tenantCode);
+        return config.getTenantCodes().contains(tenantCode);
+    }
 
     /**
      * 获取缓存租户码
