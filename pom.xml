@@ -34,6 +34,7 @@
 <!--        <module>cad</module>-->
         <module>test-eureka</module>
         <module>gateway-predicates</module>
+        <module>test-jxls</module>
 
     </modules>
 
