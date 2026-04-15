@@ -35,6 +35,7 @@
         <module>test-eureka</module>
         <module>gateway-predicates</module>
         <module>test-jxls</module>
+        <module>oauyh2-service</module>
 
     </modules>
 
